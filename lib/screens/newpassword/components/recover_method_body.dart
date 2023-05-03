@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/logIn/components/login_background.dart';
 import 'package:flutter_application_1/utils/components/roundedbutton.dart';
 import 'package:flutter_application_1/utils/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/components/verification_container.dart';
 
@@ -28,7 +29,7 @@ class Body extends StatelessWidget {
             child: Text(
               'Escolha a forma como deseja recuperar seu acesso:',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.workSans(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,

@@ -1,8 +1,8 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/homescreen/components/profile/profile_screen.dart';
-import 'package:flutter_application_1/screens/homescreen/home_screen.dart';
+// import 'package:flutter_application_1/screens/homescreen/components/profile/profile_screen.dart';
+// import 'package:flutter_application_1/screens/homescreen/home_screen.dart';
 import 'package:flutter_application_1/screens/welcome/welcome_screen.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'utils/constants.dart';
@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
         primaryColor: grey1,
         backgroundColor: Colors.white,
       ),
-      home: HomeScreen(),
-      //builder: EasyLoading.init(),
+      home: WelcomeScreen(),
+      builder: EasyLoading.init(),
     );
   }
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/insertcodescreen/insert_code_screen.dart';
 import 'package:flutter_application_1/utils/components/roundedbutton.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../constants.dart';
 
 class VerificationContainer extends StatelessWidget {
@@ -32,14 +33,14 @@ class VerificationContainer extends StatelessWidget {
               Text(
                 labelText,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                style: GoogleFonts.workSans(fontSize: 15, fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 height: size.height * 0.015,
               ),
               Text(
                 methodText,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: GoogleFonts.workSans(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: size.height * 0.045,

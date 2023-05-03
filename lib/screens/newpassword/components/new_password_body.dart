@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/logIn/components/login_background.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/components/rounded_password_field.dart';
 import '../../../utils/components/roundedbutton.dart';
@@ -28,7 +29,7 @@ class Body extends StatelessWidget {
             child: Text(
               'Insira sua nova senha e confirme\npara voltar à página de Login:',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.workSans(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
@@ -41,7 +42,7 @@ class Body extends StatelessWidget {
           Container(
             child: Text(
               'Nova Senha',
-              style: TextStyle(
+              style: GoogleFonts.workSans(
                   fontWeight: FontWeight.bold, fontSize: 17, color: red1),
             ),
             alignment: Alignment.centerLeft,
@@ -56,7 +57,7 @@ class Body extends StatelessWidget {
           Container(
             child: Text(
               'Confirmar Nova Senha',
-              style: TextStyle(
+              style: GoogleFonts.workSans(
                   fontWeight: FontWeight.bold, fontSize: 17, color: red1),
             ),
             alignment: Alignment.centerLeft,

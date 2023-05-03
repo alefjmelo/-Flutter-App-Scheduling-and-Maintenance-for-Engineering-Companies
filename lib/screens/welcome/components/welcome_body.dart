@@ -18,15 +18,15 @@ class Body extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.all(35.0),
             child: Image.asset(
               'assets/images/Logo.png',
               width: size.width * 0.55,
             ),
           ),
           RoundedButton(
-            buttonHeight: 0.075,
-            buttonWidth: 0.7,
+            buttonHeight: 0.06,
+            buttonWidth: 0.65,
             fontSize: 18,
             text: 'Entrar',
             onPress: () {

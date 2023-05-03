@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
@@ -38,7 +39,7 @@ class RoundedButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
+          style: GoogleFonts.workSans(
               fontWeight: FontWeight.bold,
               color: textColor,
               fontSize: fontSize),

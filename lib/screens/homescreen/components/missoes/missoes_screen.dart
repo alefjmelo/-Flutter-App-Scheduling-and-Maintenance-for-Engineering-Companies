@@ -28,7 +28,7 @@ class _MissoesScreenState extends State<MissoesScreen> {
             children: [
               Container(
                 width: size.width * 0.7,
-                height: size.height * 0.075,
+                height: size.height * 0.055,
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),

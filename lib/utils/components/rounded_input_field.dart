@@ -24,6 +24,12 @@ class _RoundedInputFieldState extends State<RoundedInputField> {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
+      widthSize: 0.8,
+      color: grey2,
+      borderRadius: 50,
+      borderWidth: 0,
+      borderColor: transparent,
+      heigthSize: 0.065,
       child: TextField(
         onChanged: widget.onChanged,
         decoration: InputDecoration(
@@ -31,7 +37,6 @@ class _RoundedInputFieldState extends State<RoundedInputField> {
           hintText: widget.hintText,
           border: InputBorder.none,
         ),
-      
       ),
     );
   }

@@ -22,11 +22,18 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
   late bool _passwordVisible;
   @override
   void initState() {
+    super.initState();
     _passwordVisible = false;
   }
 
   Widget build(BuildContext context) {
     return TextFieldContainer(
+      widthSize: 0.8,
+      color: grey2,
+      borderRadius: 50,
+      borderWidth: 0,
+      borderColor: transparent,
+      heigthSize: 0.065,
       child: TextField(
         obscureText: !_passwordVisible,
         decoration: InputDecoration(
@@ -36,6 +43,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
             color: grey3,
           ),
           suffixIcon: IconButton(
+            padding: EdgeInsets.only(bottom: 2.0),
             icon: Icon(
               _passwordVisible ? Icons.visibility : Icons.visibility_off,
               color: grey3,

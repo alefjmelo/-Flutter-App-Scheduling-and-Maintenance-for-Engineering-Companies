@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../constants.dart';
 
 class PasswordCheck extends StatelessWidget {
@@ -20,7 +21,7 @@ class PasswordCheck extends StatelessWidget {
         },
         child: Text(
           'Esqueceu sua senha?',
-          style: TextStyle(color: red1),
+          style: GoogleFonts.workSans(color: red1),
         ),
       ),
     );

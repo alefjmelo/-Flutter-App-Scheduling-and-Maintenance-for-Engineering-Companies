@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'selection_box.dart';
 
@@ -41,7 +42,7 @@ class CustomDialogA extends StatelessWidget {
                 ),
                 Text(
                   'Opções de Filtro',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.workSans(fontSize: 20, fontWeight: FontWeight.bold),
                 )
               ],
             ),

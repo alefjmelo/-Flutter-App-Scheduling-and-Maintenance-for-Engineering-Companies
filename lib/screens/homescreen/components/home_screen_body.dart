@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/user_model.dart';
 import 'package:flutter_application_1/screens/homescreen/components/agenda_screen.dart';
 import 'package:flutter_application_1/screens/homescreen/components/missoes/missoes_screen.dart';
 import 'package:flutter_application_1/screens/homescreen/components/profile/profile_screen.dart';
@@ -9,7 +10,8 @@ import 'package:flutter_application_1/utils/constants.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Body extends StatefulWidget {
-  const Body({super.key});
+  const Body({super.key, required this.user});
+  final User user;
 
   @override
   State<Body> createState() => _BodyState();
@@ -17,16 +19,20 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int _index = 0;
-  final screens = [
-    AgendaScreen(),
-    MissoesScreen(),
-    SuporteScreen(),
-    ProfileScreen(),
-    
-  ];
+  final List<Widget> screens = [];
+ @override
+  void initState() {
+    screens.addAll([
+      AgendaScreen(),
+      MissoesScreen(),
+      SuporteScreen(),
+      ProfileScreen(user: widget.user),
+    ]);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: screens[_index],
       bottomNavigationBar: Container(

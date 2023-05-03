@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unused_field
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/data/rest_ds.dart';
 import 'package:flutter_application_1/screens/logIn/components/login_background.dart';
 import 'package:flutter_application_1/screens/newpassword/insertCPF_screen.dart';
-//import 'package:flutter_application_1/components/roundedbutton.dart';
 import 'package:flutter_application_1/utils/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/components/PasswordCheck.dart';
 import '../../../utils/components/rounded_input_field.dart';
 import '../../../utils/components/rounded_password_field.dart';
@@ -40,7 +39,7 @@ class _BodyState extends State<Body> {
               child: Text(
                 'Olá querido funcionário, insira suas\ninformações para prosseguir:',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.workSans(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -50,7 +49,7 @@ class _BodyState extends State<Body> {
             Container(
               child: Text(
                 'CPF',
-                style: TextStyle(
+                style: GoogleFonts.workSans(
                     fontWeight: FontWeight.bold, fontSize: 17, color: red1),
               ),
               alignment: Alignment.centerLeft,
@@ -67,7 +66,7 @@ class _BodyState extends State<Body> {
             Container(
               child: Text(
                 'Senha',
-                style: TextStyle(
+                style: GoogleFonts.workSans(
                     fontWeight: FontWeight.bold, fontSize: 17, color: red1),
               ),
               alignment: Alignment.centerLeft,
@@ -90,8 +89,8 @@ class _BodyState extends State<Body> {
               },
             ),
             Container(
-              width: size.width * 0.7,
-              height: size.height * 0.075,
+              width: size.width * 0.6,
+              height: size.height * 0.06,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(50)),
               child: ElevatedButton(
@@ -106,23 +105,13 @@ class _BodyState extends State<Body> {
                 ),
                 child: Text(
                   'Entrar',
-                  style: TextStyle(
+                  style: GoogleFonts.workSans(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                       fontSize: 18),
                 ),
               ),
             ),
-            // RoundedButton(
-            //     buttonHeight: 0.075,
-            //     buttonWidth: 0.7,
-            //     fontSize: 18,
-            //     text: 'Entrar',
-            //     press: () async {
-            //       print(password);
-            //       print(email);
-            //       await HttpService.login(email, password, context);
-            //     }),
           ],
         ),
       ),

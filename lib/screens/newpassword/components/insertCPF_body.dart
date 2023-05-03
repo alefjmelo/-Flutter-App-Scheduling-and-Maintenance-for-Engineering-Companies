@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/newpassword/recover_method_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/components/rounded_input_field.dart';
 import '../../../utils/components/roundedbutton.dart';
 import '../../../utils/constants.dart';
 import '../../logIn/components/login_background.dart';
+import '../new_password_screen.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -34,7 +36,7 @@ class _BodyState extends State<Body> {
               child: Text(
                 'Insira seu CPF para receber o código\ncom as informações registradas:',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.workSans(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -44,7 +46,7 @@ class _BodyState extends State<Body> {
             Container(
               child: Text(
                 'CPF',
-                style: TextStyle(
+                style: GoogleFonts.workSans(
                     fontWeight: FontWeight.bold, fontSize: 17, color: red1),
               ),
               alignment: Alignment.centerLeft,
@@ -52,19 +54,27 @@ class _BodyState extends State<Body> {
             ),
             RoundedInputField(
               hintText: 'Ex.: 000.000.000-00',
-              onChanged: (value) {setState(() {
-                cpf = value;
-              });},
+              onChanged: (value) {
+                setState(() {
+                  cpf = value;
+                });
+              },
             ),
             SizedBox(
               height: size.height * 0.07,
             ),
             RoundedButton(
-              buttonHeight: 0.075,
-              buttonWidth: 0.7,
+              buttonHeight: 0.06,
+              buttonWidth: 0.6,
               fontSize: 18,
               text: 'Continuar',
-              onPress: () {},
+              onPress: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return RecoverMethodScreen();
+                  },
+                ));
+              },
             ),
           ],
         ),
