@@ -8,10 +8,11 @@ import '../constants.dart';
 
 class VerificationContainer extends StatelessWidget {
   final String labelText, methodText;
+  final VoidCallback onPress;
   const VerificationContainer({
     Key? key,
     required this.labelText,
-    required this.methodText,
+    required this.methodText, required this.onPress,
   }) : super(key: key);
 
   @override
@@ -47,12 +48,7 @@ class VerificationContainer extends StatelessWidget {
               ),
               RoundedButton(
                   text: 'Enviar código',
-                  onPress: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return InsertCodeScreen();
-                    }));
-                  },
+                  onPress: onPress,
                   buttonWidth: 0.6,
                   buttonHeight: 0.05,
                   fontSize: 14)

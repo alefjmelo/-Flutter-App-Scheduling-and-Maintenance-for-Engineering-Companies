@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/newpassword/recover_method_screen.dart';
+import 'package:flutter_application_1/utils/http_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/components/rounded_input_field.dart';
@@ -34,7 +35,7 @@ class _BodyState extends State<Body> {
             Padding(
               padding: const EdgeInsets.all(25),
               child: Text(
-                'Insira seu CPF para receber o código\ncom as informações registradas:',
+                'Insira seu CPF para continuar:',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.workSans(
                   color: Colors.black,
@@ -69,11 +70,7 @@ class _BodyState extends State<Body> {
               fontSize: 18,
               text: 'Continuar',
               onPress: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return RecoverMethodScreen();
-                  },
-                ));
+                HttpService.getCpf(cpf, context);
               },
             ),
           ],

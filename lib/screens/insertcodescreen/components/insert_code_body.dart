@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/logIn/components/login_background.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/components/roundedbutton.dart';
 import '../../../utils/components/textfieldcontainer.dart';
@@ -9,7 +10,8 @@ import '../../../utils/constants.dart';
 import '../../newpassword/new_password_screen.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  final int code;
+  const Body({super.key, required this.code});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,8 @@ class Body extends StatelessWidget {
             ),
             Text(
               'Insira o código que recebeu:',
-              style: GoogleFonts.workSans(fontWeight: FontWeight.bold, fontSize: 18),
+              style: GoogleFonts.workSans(
+                  fontWeight: FontWeight.bold, fontSize: 18),
             ),
             SizedBox(
               height: size.height * 0.03,
@@ -39,9 +42,20 @@ class Body extends StatelessWidget {
               borderRadius: 50,
               borderWidth: 0,
               borderColor: transparent,
-              heigthSize: 0.09,
+              heigthSize: 0.07,
               child: TextField(
-                onChanged: (value) {},
+                onChanged: (value) {
+                  var codeCheck = int.parse(value);
+                  if (codeCheck != code) {
+                    EasyLoading.showError('Código Inválido');
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NewPasswordScreen()),
+                    );
+                  }
+                },
                 decoration: InputDecoration(
                   icon: Icon(Icons.password, color: grey3),
                   hintText: '',

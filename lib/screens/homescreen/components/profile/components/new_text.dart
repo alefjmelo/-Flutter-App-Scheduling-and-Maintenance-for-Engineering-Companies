@@ -9,14 +9,19 @@ class NewText extends StatelessWidget {
   final double fontSize;
   final String label;
   const NewText({
-    super.key, required this.color, required this.fontWeight, required this.fontSize, required this.label,
+    super.key,
+    required this.color,
+    required this.fontWeight,
+    required this.fontSize,
+    required this.label,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: GoogleFonts.workSans(color: color, fontWeight: fontWeight, fontSize: fontSize),
+      style: GoogleFonts.workSans(
+          color: color, fontWeight: fontWeight, fontSize: fontSize),
     );
   }
 }

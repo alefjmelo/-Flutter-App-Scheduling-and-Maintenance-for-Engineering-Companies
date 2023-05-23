@@ -6,13 +6,14 @@ import 'package:flutter_application_1/utils/constants.dart';
 import 'components/insert_code_body.dart';
 
 class InsertCodeScreen extends StatelessWidget {
-  const InsertCodeScreen({super.key});
+  final int code;
+  const InsertCodeScreen({super.key, required this.code});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: grey1,
-      body: Body(),
+      body: Body(code: code),
     );
   }
 }

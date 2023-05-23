@@ -2,19 +2,30 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/logIn/components/login_background.dart';
-import 'package:flutter_application_1/utils/components/roundedbutton.dart';
-import 'package:flutter_application_1/utils/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../utils/components/verification_container.dart';
+import 'custom_dialog_c.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  final String email, phoneNumber;
+
   const Body({
     Key? key,
+    required this.email,
+    required this.phoneNumber,
   }) : super(key: key);
 
   @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  @override
   Widget build(BuildContext context) {
+    final String maskedPhone =
+        '${widget.phoneNumber.substring(0, widget.phoneNumber.length - 4)}****';
+    final String maskedEmail = widget.email.replaceRange(
+        widget.email.indexOf('@') - 4, widget.email.indexOf('@'), '****');
     Size size = MediaQuery.of(context).size;
     return BackgroundLogin(
       child: Column(
@@ -37,15 +48,24 @@ class Body extends StatelessWidget {
             ),
           ),
           VerificationContainer(
-              labelText:
-                  'Email: um código será enviado\npara o seguinte email:',
-              methodText: 'rr******@gmail.com'),
+            labelText: 'Email: um código será enviado\npara o seguinte email:',
+            methodText: maskedEmail,
+            onPress: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return CustomDialogC(maskedEmail: maskedEmail, email: widget.email);
+                },
+              );
+            },
+          ),
           SizedBox(
             height: size.height * 0.05,
           ),
           VerificationContainer(
             labelText: 'SMS: Um código será enviado\npara o seguinte número',
-            methodText: '(00) 00***-**00',
+            methodText: maskedPhone,
+            onPress: () {},
           ),
         ],
       ),
