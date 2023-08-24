@@ -1,6 +1,6 @@
 class User {
   int id;
-  String acessToken;
+  //String acessToken;
   String name;
   String cpf;
   String gender;
@@ -10,7 +10,7 @@ class User {
   String email;
 
   User({
-    required this.acessToken,
+    //required this.acessToken,
     required this.id,
     required this.name,
     required this.cpf,
@@ -24,7 +24,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
-      acessToken: json['AcessToken'],
+      //acessToken: json['AcessToken'],
       name: json['Nome'],
       cpf: json['Cpf'],
       gender: json['Sexo'],

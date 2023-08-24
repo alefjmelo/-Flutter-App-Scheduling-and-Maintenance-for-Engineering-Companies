@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/newpassword/recover_method_screen.dart';
 import 'package:flutter_application_1/utils/http_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -54,7 +53,7 @@ class _BodyState extends State<Body> {
               width: size.width * 0.7,
             ),
             RoundedInputField(
-              hintText: 'Ex.: 000.000.000-00',
+              hintText: 'Digite sem caracteres',
               onChanged: (value) {
                 setState(() {
                   cpf = value;

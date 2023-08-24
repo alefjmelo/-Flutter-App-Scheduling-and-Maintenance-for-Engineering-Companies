@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/logIn/components/login_background.dart';
 import 'package:flutter_application_1/screens/newpassword/insertCPF_screen.dart';
 import 'package:flutter_application_1/utils/constants.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/components/PasswordCheck.dart';
 import '../../../utils/components/rounded_input_field.dart';
@@ -20,11 +21,12 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  late String cpf;
-  late String password;
+  String cpf = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    TextEditingController textEditingController = TextEditingController();
     return SingleChildScrollView(
       child: BackgroundLogin(
         child: Column(
@@ -56,7 +58,7 @@ class _BodyState extends State<Body> {
               width: size.width * 0.7,
             ),
             RoundedInputField(
-              hintText: 'Ex.: 000.000.000-00',
+              hintText: 'Digite sem caracteres',
               onChanged: (value) {
                 setState(() {
                   cpf = value;
@@ -95,7 +97,11 @@ class _BodyState extends State<Body> {
                   BoxDecoration(borderRadius: BorderRadius.circular(50)),
               child: ElevatedButton(
                 onPressed: () async {
-                  await HttpService.login(cpf, password, context);
+                  if (cpf.isEmpty && password.isEmpty) {
+                    EasyLoading.showError('Insira os dados para prosseguir!');
+                  } else {
+                    await HttpService.login(cpf, password, context);
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

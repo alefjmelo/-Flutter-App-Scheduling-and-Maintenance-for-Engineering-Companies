@@ -2,18 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/logIn/components/login_background.dart';
+import 'package:flutter_application_1/utils/http_service.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../utils/components/rounded_password_field.dart';
 import '../../../utils/components/roundedbutton.dart';
 import '../../../utils/constants.dart';
-import '../../logIn/login_screen.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  final String cpf;
+  const Body({super.key, required this.cpf});
 
   @override
   Widget build(BuildContext context) {
+    String? passwordTyped1, passwordTyped2;
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: BackgroundLogin(
@@ -48,9 +50,12 @@ class Body extends StatelessWidget {
             alignment: Alignment.centerLeft,
             width: size.width * 0.7,
           ),
-          RoundedPasswordField(hintText: '', onChanged: (value) {
-            
-          },),
+          RoundedPasswordField(
+            hintText: '',
+            onChanged: (value) {
+              passwordTyped1 = value;
+            },
+          ),
           SizedBox(
             height: size.height * 0.02,
           ),
@@ -63,23 +68,28 @@ class Body extends StatelessWidget {
             alignment: Alignment.centerLeft,
             width: size.width * 0.7,
           ),
-          RoundedPasswordField(hintText: '', onChanged: (value) {
-            
-          },),
+          RoundedPasswordField(
+            hintText: '',
+            onChanged: (value) {
+              passwordTyped2 = value;
+            },
+          ),
           SizedBox(
             height: size.height * 0.04,
           ),
           RoundedButton(
-              buttonHeight: 0.075,
-              buttonWidth: 0.7,
-              fontSize: 18,
-              text: 'Confirmar',
-              onPress: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return LoginScreen();
-                }));
-              }),
+            buttonHeight: 0.06,
+            buttonWidth: 0.6,
+            fontSize: 18,
+            text: 'Confirmar',
+            onPress: () async {
+              if(passwordTyped1 != passwordTyped2){
+                EasyLoading.showError('Senhas não combinam!');
+              } else{
+                await HttpService.newPassword(cpf, passwordTyped1, context);
+              }
+            },
+          ),
         ],
       )),
     );

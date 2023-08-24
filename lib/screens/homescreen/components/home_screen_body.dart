@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/user_model.dart';
 import 'package:flutter_application_1/screens/homescreen/components/agenda_screen.dart';
-import 'package:flutter_application_1/screens/homescreen/components/missoes/missoes_screen.dart';
+import 'package:flutter_application_1/screens/homescreen/components/missions/missions/missoes_screen.dart';
 import 'package:flutter_application_1/screens/homescreen/components/profile/profile_screen.dart';
 import 'package:flutter_application_1/screens/homescreen/components/suporte_screen.dart';
 import 'package:flutter_application_1/utils/constants.dart';

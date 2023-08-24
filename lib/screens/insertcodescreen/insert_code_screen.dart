@@ -7,13 +7,14 @@ import 'components/insert_code_body.dart';
 
 class InsertCodeScreen extends StatelessWidget {
   final int code;
-  const InsertCodeScreen({super.key, required this.code});
+  final String cpf;
+  const InsertCodeScreen({super.key, required this.code, required this.cpf});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: grey1,
-      body: Body(code: code),
+      body: Body(code: code, cpf: cpf),
     );
   }
 }

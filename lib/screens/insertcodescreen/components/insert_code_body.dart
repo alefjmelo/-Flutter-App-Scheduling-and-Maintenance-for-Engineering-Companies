@@ -11,10 +11,12 @@ import '../../newpassword/new_password_screen.dart';
 
 class Body extends StatelessWidget {
   final int code;
-  const Body({super.key, required this.code});
+  final String cpf;
+  const Body({super.key, required this.code, required this.cpf});
 
   @override
   Widget build(BuildContext context) {
+    int? codeCheck;
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: BackgroundLogin(
@@ -45,16 +47,7 @@ class Body extends StatelessWidget {
               heigthSize: 0.07,
               child: TextField(
                 onChanged: (value) {
-                  var codeCheck = int.parse(value);
-                  if (codeCheck != code) {
-                    EasyLoading.showError('Código Inválido');
-                  } else {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NewPasswordScreen()),
-                    );
-                  }
+                  codeCheck = int.parse(value);
                 },
                 decoration: InputDecoration(
                   icon: Icon(Icons.password, color: grey3),
@@ -68,16 +61,22 @@ class Body extends StatelessWidget {
               height: size.height * 0.03,
             ),
             RoundedButton(
-                buttonHeight: 0.055,
-                buttonWidth: 0.7,
-                fontSize: 18,
-                text: 'Continuar',
-                onPress: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return NewPasswordScreen();
-                  }));
-                }),
+              buttonHeight: 0.055,
+              buttonWidth: 0.7,
+              fontSize: 18,
+              text: 'Continuar',
+              onPress: () {
+                if (codeCheck != code) {
+                  EasyLoading.showError('Código Inválido');
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NewPasswordScreen(cpf: cpf)),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),

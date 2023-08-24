@@ -11,11 +11,12 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../../utils/http_service.dart';
 
 class CustomDialogC extends StatefulWidget {
-  final String maskedEmail, email;
+  final String maskedEmail, email, cpf;
   const CustomDialogC({
     super.key,
     required this.maskedEmail,
     required this.email,
+    required this.cpf,
   });
 
   @override
@@ -125,7 +126,7 @@ class _CustomDialogCState extends State<CustomDialogC> {
                                 'Email inserido está incorreto');
                           } else {
                             await HttpService.sendCodeEmail(
-                                emailTyped, context,);
+                                widget.cpf, emailTyped, context);
                           }
                         },
                         buttonWidth: 0.5,

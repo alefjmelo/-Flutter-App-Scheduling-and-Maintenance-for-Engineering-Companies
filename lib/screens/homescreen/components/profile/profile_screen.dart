@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/logIn/login_screen.dart';
 import 'package:flutter_application_1/screens/newpassword/insertCPF_screen.dart';
 import 'package:flutter_application_1/utils/constants.dart';
 import 'package:flutter_application_1/utils/http_service.dart';
@@ -21,6 +22,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    String formatCPF(String cpf) {
+      final formattedCPF = cpf.replaceAllMapped(
+        RegExp(r"(\d{3})(\d{3})(\d{3})(\d{2})"),
+        (match) => "${match[1]}.${match[2]}.${match[3]}-${match[4]}",
+      );
+      return formattedCPF;
+    }
+
+    String formatPhoneNumber(String phoneNumber) {
+      final formattedPhoneNumber = phoneNumber.replaceAllMapped(
+        RegExp(r"(\d{2})(\d{5})(\d{4})"),
+        (match) => "(${match[1]}) ${match[2]}-${match[3]}",
+      );
+      return formattedPhoneNumber;
+    }
+
+    String formattedCpf = formatCPF(widget.user.cpf);
+    String formattedPhoneNumber = formatPhoneNumber(widget.user.phoneNumber);
 
     return SingleChildScrollView(
       padding: EdgeInsets.all(10.0),
@@ -65,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: GoogleFonts.workSans(fontSize: 16.5, color: grey3),
                     ),
                     Text(
-                      widget.user.cpf,
+                      formattedCpf,
                       style: GoogleFonts.workSans(fontSize: 16.5, color: black),
                     ),
                     SizedBox(
@@ -76,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: GoogleFonts.workSans(fontSize: 16.5, color: grey3),
                     ),
                     Text(
-                      widget.user.phoneNumber,
+                      formattedPhoneNumber,
                       style: GoogleFonts.workSans(fontSize: 16.5, color: black),
                     ),
                   ],
@@ -178,7 +198,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             RoundedButton(
               text: 'Log Out',
-              onPress: () {},
+              onPress: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
               buttonWidth: 0.6,
               buttonHeight: 0.065,
               fontSize: 16.5,

@@ -7,12 +7,12 @@ import '../../../utils/components/verification_container.dart';
 import 'custom_dialog_c.dart';
 
 class Body extends StatefulWidget {
-  final String email, phoneNumber;
+  final String email, phoneNumber, cpf;
 
   const Body({
     Key? key,
     required this.email,
-    required this.phoneNumber,
+    required this.phoneNumber, required this.cpf,
   }) : super(key: key);
 
   @override
@@ -27,47 +27,49 @@ class _BodyState extends State<Body> {
     final String maskedEmail = widget.email.replaceRange(
         widget.email.indexOf('@') - 4, widget.email.indexOf('@'), '****');
     Size size = MediaQuery.of(context).size;
-    return BackgroundLogin(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/images/Logo.png',
-            width: size.width * 0.32,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(25),
-            child: Text(
-              'Escolha a forma como deseja recuperar seu acesso:',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.workSans(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+    return SingleChildScrollView(
+      child: BackgroundLogin(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/Logo.png',
+              width: size.width * 0.32,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(25),
+              child: Text(
+                'Escolha a forma como deseja recuperar seu acesso:',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.workSans(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
             ),
-          ),
-          VerificationContainer(
-            labelText: 'Email: um código será enviado\npara o seguinte email:',
-            methodText: maskedEmail,
-            onPress: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return CustomDialogC(maskedEmail: maskedEmail, email: widget.email);
-                },
-              );
-            },
-          ),
-          SizedBox(
-            height: size.height * 0.05,
-          ),
-          VerificationContainer(
-            labelText: 'SMS: Um código será enviado\npara o seguinte número',
-            methodText: maskedPhone,
-            onPress: () {},
-          ),
-        ],
+            VerificationContainer(
+              labelText: 'Email: um código será enviado\npara o seguinte email:',
+              methodText: maskedEmail,
+              onPress: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return CustomDialogC(maskedEmail: maskedEmail, email: widget.email, cpf: widget.cpf);
+                  },
+                );
+              },
+            ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
+            VerificationContainer(
+              labelText: 'SMS: Um código será enviado\npara o seguinte número',
+              methodText: maskedPhone,
+              onPress: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

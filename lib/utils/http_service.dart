@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/homescreen/home_screen.dart';
+import 'package:flutter_application_1/screens/logIn/login_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../models/user_model.dart';
@@ -11,16 +12,39 @@ import '../screens/insertcodescreen/insert_code_screen.dart';
 import '../screens/newpassword/recover_method_screen.dart';
 
 class HttpService {
-  static const BASE_URL = "https://8b7b-186-249-214-234.ngrok-free.app";
+  static const BASE_URL = "https://c1d2-186-249-214-230.ngrok-free.app";
   static const LOGIN_URL = "$BASE_URL/login";
   static const GET_PROFILE_PHOTO = "$BASE_URL/sendImagePerfil";
   static const GET_EMAIL_SMS = "$BASE_URL/pega_email_sms";
   static const SEND_CODE_EMAIL = "$BASE_URL/envia_email";
+  static const NEW_PASSWORD = "$BASE_URL/NovaSenha";
 
-  static Future<void> sendCodeEmail(email, context) async {
+  static Future<void> newPassword(cpf, password, context) async {
+    var response = await http.post(
+      Uri.parse(NEW_PASSWORD),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({"cpf": cpf, "senha": password}),
+    );
+
+    if (response.statusCode == 200) {
+      await EasyLoading.showSuccess('Senha atualizada com sucesso!',
+          duration: Duration(seconds: 3));
+      await Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    } else {
+      await EasyLoading.showError(
+          'A senha não foi atualizada, tente novamente!');
+    }
+    throw Exception('Failed to post new password.');
+  }
+
+  static Future<void> sendCodeEmail(cpf, email, context) async {
     var random = Random();
     int code = random.nextInt(99999);
-
     final response = await http.post(Uri.parse(SEND_CODE_EMAIL),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -28,11 +52,16 @@ class HttpService {
         body: jsonEncode({"email": email, "codigo": code}));
 
     if (response.statusCode == 200) {
-      Navigator.push(
+      //print("THE CODE IS THIS ONE: --------------${code}-----------------");
+      await Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => InsertCodeScreen(code: code)),
+        MaterialPageRoute(
+            builder: (context) => InsertCodeScreen(code: code, cpf: cpf)),
       );
+    } else {
+      await EasyLoading.showError("Erro: ${response.statusCode}");
     }
+    throw Exception('Failed to send code to email.');
   }
 
   static Future<void> getCpf(cpf, context) async {
@@ -50,14 +79,14 @@ class HttpService {
       await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              RecoverMethodScreen(phoneNumber: phoneNumber, email: email),
+          builder: (context) => RecoverMethodScreen(
+              phoneNumber: phoneNumber, email: email, cpf: cpf),
         ),
       );
     }
   }
 
-  static Future<User> login(cpf, password, context) async {
+  static Future<void> login(cpf, password, context) async {
     final response = await http.post(
       Uri.parse(LOGIN_URL),
       headers: <String, String>{
@@ -73,12 +102,10 @@ class HttpService {
         context,
         MaterialPageRoute(builder: (context) => HomeScreen(user: user)),
       );
-      return user;
     } else {
       await EasyLoading.showError(
-          "Error Code : ${response.statusCode.toString()}");
+          "Senha ou CPF incorretos");
     }
-    throw Exception('Failed to load user');
   }
 
   static Future<Image> getProfileImg(int id) async {
@@ -95,6 +122,6 @@ class HttpService {
       await EasyLoading.showError(
           "Error Code : ${response.statusCode.toString()}");
     }
-    throw Exception('Failed to load image');
+    throw Exception('Failed to load image.');
   }
 }

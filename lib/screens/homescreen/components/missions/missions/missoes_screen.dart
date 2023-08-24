@@ -2,8 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/homescreen/components/home_background.dart';
-import 'package:flutter_application_1/screens/homescreen/components/missoes/custom_dialog_a.dart';
+import 'package:flutter_application_1/screens/homescreen/components/missions/custom_dialog_a.dart';
+import 'package:flutter_application_1/screens/homescreen/components/missions/missions/project_tile_widget.dart';
 import 'package:flutter_application_1/utils/constants.dart';
+
+import '../../../../../models/project_model.dart';
 
 class MissoesScreen extends StatefulWidget {
   const MissoesScreen({super.key});
@@ -13,6 +16,12 @@ class MissoesScreen extends StatefulWidget {
 }
 
 class _MissoesScreenState extends State<MissoesScreen> {
+  List<Project> projects = [
+    Project(title: 'Project 1', description: 'Description for Project 1'),
+    Project(title: 'Project 2', description: 'Description for Project 2'),
+    // Add more projects as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -75,6 +84,17 @@ class _MissoesScreenState extends State<MissoesScreen> {
                 ],
               ),
             ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return ProjectTile(
+                  project: projects[index],
+                  cardColor: grey2,
+                );
+              },
+              itemCount: projects.length,
+            ),
           ),
         ],
       ),

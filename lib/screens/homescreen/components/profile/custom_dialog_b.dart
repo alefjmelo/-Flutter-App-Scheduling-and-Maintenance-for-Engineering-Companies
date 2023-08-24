@@ -91,10 +91,9 @@ class _CustomDialogBState extends State<CustomDialogB> {
                         fontSize: 17.0,
                         label: 'Alterar Email',
                       ),
-                      SomeSpace(
-                        size: size,
-                        heightSize: 0.01,
-                        widthSize: 0,
+                      SizedBox(
+                        height: 0.01,
+                        width: 0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,10 +141,9 @@ class _CustomDialogBState extends State<CustomDialogB> {
                           ),
                         ],
                       ),
-                      SomeSpace(
-                        size: size,
-                        heightSize: 0.025,
-                        widthSize: 0,
+                      SizedBox(                        
+                        height: 0.025,
+                        width: 0,
                       ),
                       NewText(
                         color: black,
@@ -153,10 +151,9 @@ class _CustomDialogBState extends State<CustomDialogB> {
                         fontSize: 17.0,
                         label: 'Alterar Telefone',
                       ),
-                      SomeSpace(
-                        size: size,
-                        heightSize: 0.01,
-                        widthSize: 0,
+                      SizedBox(                        
+                        height: 0.01,
+                        width: 0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -204,10 +201,9 @@ class _CustomDialogBState extends State<CustomDialogB> {
                           ),
                         ],
                       ),
-                      SomeSpace(
-                        size: size,
-                        heightSize: 0.03,
-                        widthSize: 0,
+                      SizedBox(                        
+                        height: 0.03,
+                        width: 0,
                       ),
                       RoundedButton(
                         text: 'Salvar',
@@ -233,26 +229,6 @@ class _CustomDialogBState extends State<CustomDialogB> {
       elevation: 0.0,
       backgroundColor: Colors.transparent,
       child: dialogContent(context),
-    );
-  }
-}
-
-class SomeSpace extends StatelessWidget {
-  final double heightSize, widthSize;
-  const SomeSpace({
-    super.key,
-    required this.size,
-    required this.heightSize,
-    required this.widthSize,
-  });
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: size.height * heightSize,
-      width: size.width * widthSize,
     );
   }
 }

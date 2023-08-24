@@ -7,7 +7,7 @@ class NewText extends StatelessWidget {
   final color;
   final fontWeight;
   final double fontSize;
-  final String label;
+  final label;
   const NewText({
     super.key,
     required this.color,
